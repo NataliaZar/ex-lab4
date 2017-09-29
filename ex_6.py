@@ -24,12 +24,13 @@ with open(path) as f:
 
 @print_result
 def f1(arg):
-    return list(sorted(unique(field(arg, 'job-name'), ignore_case='True')))
+    return list(sorted(unique(field(arg, 'job-name'), ignore_case=True)))
 
 
 @print_result
 def f2(arg):
-    return list(filter(lambda x: 'программист' in x, arg))
+    return list(filter(lambda x: x.startswith('Программист'), arg))
+
 
 @print_result
 def f3(arg):
@@ -39,7 +40,7 @@ def f3(arg):
 @print_result
 def f4(arg):
     g = gen_random(100000, 200000, len(arg))
-    return list(map(lambda y: y[0] + y[1], list(zip(arg, list(map(lambda x: ', зарплата ' + x + ' руб.', map(str, g)))))))
+    return list(map(lambda y: y[0] + y[1], zip(arg, list(map(lambda x: ', зарплата {} руб.'.format(x), g)))))
 
 
 with timer():

@@ -7,7 +7,7 @@ class Unique(object):
         # Например: ignore_case = True, Aбв и АБВ разные строки
         #           ignore_case = False, Aбв и АБВ одинаковые строки, одна из них удалится
         # По-умолчанию ignore_case = False
-        self.ignore_case = kwargs.get('ignore_case', 'False')
+        self.ignore_case = kwargs.get('ignore_case', False)
         if isinstance(items, list):
             self.items = (x for x in items)
         else:
@@ -16,10 +16,11 @@ class Unique(object):
 
     def __next__(self):
         for a in self.items:
-            if self.ignore_case == 'True':
-                if isinstance(a, str):
-                    a = a.lower()
-            if a not in self._s:
+            if self.ignore_case and isinstance(a, str):
+                if a.lower() not in map(lambda s: s.lower(), self._s):
+                    self._s.add(a)
+                    return a
+            elif a not in self._s:
                 self._s.add(a)
                 return a
         else:

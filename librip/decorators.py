@@ -38,9 +38,9 @@
 
 
 def print_result(func):
-    def wrapper(*args):
+    def wrapper(*args, **kwargs):
         print(func.__name__)
-        a = func(*args)
+        a = func(*args, **kwargs)
         if isinstance(a, list):
             print('\n'.join(map(str, a)))
         elif isinstance(a, dict):

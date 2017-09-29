@@ -9,6 +9,6 @@ goods = [
 ]
 
 # Реализация задания 1
-print(' '.join(map(str, field(goods, 'title'))))
+print(' '.join(field(goods, 'title')))
 print(' '.join(map(str, field(goods, 'title', 'price'))))
 print(', '.join(map(str, gen_random(1, 3, 5))))

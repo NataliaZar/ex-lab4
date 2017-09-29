@@ -10,7 +10,7 @@
 from datetime import datetime
 
 
-class timer():
+class timer:
     def __enter__(self):
         self.now = datetime.now()
 
